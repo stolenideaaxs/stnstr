@@ -1,70 +1,114 @@
-import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { ShoppingCart, DollarSign, Package, Users } from 'lucide-react';
-import { supabase } from "@/integrations/supabase/client";
-import Sidebar from '@/components/layout/Sidebar';
-import Header from '@/components/layout/Header';
-import StatCard from '@/components/dashboard/StatCard';
-import ProductsTable from '@/components/dashboard/ProductsTable';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '@/components/ui/button';
 
-const Index = () => {
-  const { data: stats } = useQuery({
-    queryKey: ['dashboard-stats'],
-    queryFn: async () => {
-      const [orders, products, customers] = await Promise.all([
-        supabase.from('orders').select('total_amount'),
-        supabase.from('products').select('stock'),
-        supabase.from('customers').select('id'),
-      ]);
+const Landing: React.FC = () => {
+  const [timeLeft, setTimeLeft] = useState(3600);
+  const [flash, setFlash] = useState(false);
+  const [whiteFlash, setWhiteFlash] = useState(false);
+  const navigate = useNavigate();
 
-      const totalRevenue = orders.data?.reduce((sum, order) => sum + Number(order.total_amount), 0) || 0;
-      const totalStock = products.data?.reduce((sum, product) => sum + product.stock, 0) || 0;
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev > 0) {
+          if (prev % 60 === 0) {
+            setFlash(true);
+            setTimeout(() => setFlash(false), 500);
+          }
+          return prev - 1;
+        }
+        return 0;
+      });
+    }, 1000);
 
-      return {
-        totalOrders: orders.data?.length || 0,
-        totalRevenue,
-        totalStock,
-        totalCustomers: customers.data?.length || 0,
-      };
-    },
-  });
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
+  const formatTime = (seconds: number) => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setWhiteFlash(true);
+    setTimeout(() => setWhiteFlash(false), 1000);
+  };
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <Sidebar />
-      <Header />
-      
-      <main className="ml-64 pt-16 p-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-          <StatCard
-            title="Total Orders"
-            value={stats?.totalOrders || 0}
-            icon={ShoppingCart}
-          />
-          <StatCard
-            title="Revenue"
-            value={`$${stats?.totalRevenue || 0}`}
-            icon={DollarSign}
-          />
-          <StatCard
-            title="Products in Stock"
-            value={stats?.totalStock || 0}
-            icon={Package}
-          />
-          <StatCard
-            title="Total Customers"
-            value={stats?.totalCustomers || 0}
-            icon={Users}
-          />
-        </div>
+    <div
+      className={`min-h-screen flex flex-col justify-between bg-brand-black text-brand-white 
+        ${flash ? 'animate-[flash_500ms]' : ''} 
+        ${whiteFlash ? 'animate-[whiteFlash_1s]' : ''}`}
+    >
+      <header className="flex justify-between items-center p-6 border-b border-brand-white/20">
+        <div className="text-4xl font-extrabold tracking-widest text-brand-red animate-pulse">STNSTR</div>
+        <nav className="flex space-x-6 text-lg">
+          <a href="#about" className="hover:text-brand-red transition-colors duration-200">About</a>
+          <a href="#drops" className="hover:text-brand-red transition-colors duration-200">Drops</a>
+          <a href="#contact" className="hover:text-brand-red transition-colors duration-200">Contact</a>
+          <Button 
+            variant="ghost" 
+            className="hover:text-brand-red transition-colors duration-200"
+            onClick={() => navigate('/admin')}
+          >
+            Admin
+          </Button>
+        </nav>
+      </header>
 
-        <div className="mb-6">
-          <h2 className="text-2xl font-bold mb-4">Recent Products</h2>
-          <ProductsTable />
+      <section className="flex flex-col items-center justify-center text-center px-4 py-32 animate-fade-in">
+        <h1 className="text-7xl font-extrabold tracking-tight mb-6 text-brand-red">
+          Run the Streets, <br /> Own Your Style.
+        </h1>
+        <p className="text-2xl text-brand-white/80 mb-10 animate-fade-in-delay">
+          The most exclusive streetwear. Once it drops, it's gone.
+        </p>
+        <div className="flex space-x-6">
+          <a href="#signup" className="px-8 py-4 bg-brand-red text-brand-black font-bold rounded-lg hover:bg-brand-white transition-all duration-300">
+            Sign Up for Updates
+          </a>
+          <a href="#about" className="px-8 py-4 border border-brand-white font-bold rounded-lg hover:bg-brand-white hover:text-brand-black transition-all duration-300">
+            Learn More
+          </a>
         </div>
-      </main>
+      </section>
+
+      <section className="py-16 text-center bg-brand-red">
+        <h2 className="text-5xl font-bold mb-8 text-brand-black">Next Drop In:</h2>
+        <div className="text-brand-white text-7xl font-mono tracking-wider animate-pulse">
+          {formatTime(timeLeft)}
+        </div>
+      </section>
+
+      <section id="signup" className="py-16 px-4 text-center">
+        <h2 className="text-4xl font-bold mb-6">Stay in the Loop</h2>
+        <p className="text-brand-white/80 mb-8">Sign up to get notified for the next exclusive drop.</p>
+        <form className="flex justify-center" onSubmit={handleSubmit}>
+          <input
+            type="email"
+            placeholder="Enter your email"
+            className="px-6 py-3 rounded-l-lg bg-brand-white/10 text-brand-white border border-brand-white/20 focus:outline-none focus:ring-2 focus:ring-brand-red"
+          />
+          <button
+            type="submit"
+            className="px-8 py-3 bg-brand-red text-brand-black font-bold rounded-r-lg hover:bg-brand-white transition-all duration-300"
+          >
+            Notify Me
+          </button>
+        </form>
+      </section>
+
+      <footer className="py-8 text-center text-sm text-brand-white/60 border-t border-brand-white/20">
+        <p>&copy; {new Date().getFullYear()} Stolen Street. All Rights Reserved.</p>
+      </footer>
     </div>
   );
 };
 
-export default Index;
+export default Landing;
