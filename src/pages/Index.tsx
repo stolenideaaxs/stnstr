@@ -3,6 +3,8 @@ import SubscribeButton from '../components/SubscribeButton';
 
 const Index = () => {
   const [timeLeft, setTimeLeft] = useState(0);
+  const [flash, setFlash] = useState(false);
+  const [whiteFlash, setWhiteFlash] = useState(false);
 
   useEffect(() => {
     const calculateTimeLeft = () => {
@@ -29,8 +31,17 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black">
-      <div className="text-center relative z-10 space-y-8 animate-[scale-in_2s_ease-in-out_infinite]">
+    <div className={`min-h-screen flex items-center justify-center bg-black 
+        ${flash ? 'animate-[flash_500ms]' : ''} 
+        ${whiteFlash ? 'animate-[whiteFlash_1s]' : ''}`}>
+      {/* Radial blur glow effect */}
+      <div className="absolute inset-0 bg-gradient-radial from-brand-red/20 via-transparent to-transparent animate-[radial-blur_10s_linear_infinite] mix-blend-overlay" 
+           style={{
+             transform: 'rotate(0deg)',
+             animation: 'radial-blur 10s linear infinite',
+           }} />
+
+      <div className="text-center relative z-10 space-y-8 animate-[scale-in_60s_ease-in-out_infinite]">
         <h1 className="text-6xl font-bold mb-4">
           <span className="text-brand-white">STN</span>
           <span className="text-brand-red">STREET</span>

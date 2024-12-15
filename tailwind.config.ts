@@ -54,7 +54,11 @@ export default {
       },
       animation: {
         'pulse': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'scale-in': 'scale-in 2s ease-in-out infinite',
+        'scale-in': 'scale-in 60s ease-in-out infinite',
+        'radial-blur': 'radial-blur 10s linear infinite',
+        'flash': 'flash 1.3s forwards',
+        'whiteFlash': 'whiteFlash 1.3s forwards',
+        'time-warp': 'time-warp 2s forwards',
       },
       keyframes: {
         'pulse': {
