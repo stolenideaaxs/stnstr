@@ -44,7 +44,11 @@ const Landing: React.FC = () => {
   };
 
   return (
-    <div className={`min-h-screen flex flex-col justify-between bg-brand-black text-brand-white ${flash ? 'flash-red' : ''} ${whiteFlash ? 'flash-white' : ''}`}>
+    <div
+      className={`min-h-screen flex flex-col justify-between bg-brand-black text-brand-white 
+        ${flash ? 'animate-[flash_500ms]' : ''} 
+        ${whiteFlash ? 'animate-[whiteFlash_1s]' : ''}`}
+    >
       <header className="flex justify-between items-center p-6 border-b border-brand-white/20">
         <div className="text-4xl font-extrabold tracking-widest text-brand-red animate-pulse">STNSTR</div>
         <nav className="flex space-x-6 text-lg">
@@ -99,32 +103,6 @@ const Landing: React.FC = () => {
       <footer className="py-8 text-center text-sm text-brand-white/60 border-t border-brand-white/20">
         <p>&copy; {new Date().getFullYear()} Stolen Street. All Rights Reserved.</p>
       </footer>
-
-      <style jsx>{`
-        .flash-red {
-          animation: flash 500ms;
-        }
-        .flash-white {
-          animation: whiteFlash 1s;
-        }
-        @keyframes flash {
-          0% { background-color: #ea384c; }
-          100% { background-color: #000000; }
-        }
-        @keyframes whiteFlash {
-          0% {
-            background-color: #FFFFFF;
-            transform: scale(1);
-          }
-          50% {
-            transform: scale(1.1);
-          }
-          100% {
-            background-color: #000000;
-            transform: scale(1);
-          }
-        }
-      `}</style>
     </div>
   );
 };
