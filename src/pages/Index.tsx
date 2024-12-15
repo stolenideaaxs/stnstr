@@ -1,112 +1,80 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import SubscribeButton from '@/components/SubscribeButton';
 
 const Landing: React.FC = () => {
-  const [timeLeft, setTimeLeft] = useState(3600);
-  const [flash, setFlash] = useState(false);
-  const [whiteFlash, setWhiteFlash] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(3600); // 1 hour in seconds
+  const [earlyAccess, setEarlyAccess] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev > 0) {
-          if (prev % 60 === 0) {
-            setFlash(true);
-            setTimeout(() => setFlash(false), 500);
-          }
-          return prev - 1;
-        }
-        return 0;
-      });
+      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
     }, 1000);
 
-    return () => {
-      clearInterval(timer);
-    };
+    return () => clearInterval(timer);
   }, []);
 
   const formatTime = (seconds: number) => {
-    const hours = Math.floor(seconds / 3600);
+    const days = Math.floor(seconds / (3600 * 24));
+    const hours = Math.floor((seconds % (3600 * 24)) / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
     const secs = seconds % 60;
-    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setWhiteFlash(true);
-    setTimeout(() => setWhiteFlash(false), 1000);
+    return `${String(days).padStart(2, '0')}D ${String(hours).padStart(2, '0')}H ${String(minutes).padStart(2, '0')}M ${String(secs).padStart(2, '0')}S`;
   };
 
   return (
-    <div
-      className={`min-h-screen flex flex-col justify-between bg-brand-black text-brand-white 
-        ${flash ? 'animate-[flash_500ms]' : ''} 
-        ${whiteFlash ? 'animate-[whiteFlash_1s]' : ''}`}
-    >
-      <header className="flex justify-between items-center p-6 border-b border-brand-white/20">
-        <div className="text-4xl font-extrabold tracking-widest text-brand-red animate-pulse">STNSTR</div>
-        <nav className="flex space-x-6 text-lg">
-          <a href="#about" className="hover:text-brand-red transition-colors duration-200">About</a>
-          <a href="#drops" className="hover:text-brand-red transition-colors duration-200">Drops</a>
-          <a href="#contact" className="hover:text-brand-red transition-colors duration-200">Contact</a>
-          <Button 
-            variant="ghost" 
-            className="hover:text-brand-red transition-colors duration-200"
-            onClick={() => navigate('/admin')}
-          >
-            Admin
-          </Button>
-        </nav>
-      </header>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-brand-black text-brand-white p-4">
+      <div className="absolute top-4 right-4">
+        <Button 
+          variant="ghost" 
+          className="text-brand-white hover:text-brand-red transition-colors duration-200"
+          onClick={() => navigate('/admin')}
+        >
+          Admin
+        </Button>
+      </div>
 
-      <section className="flex flex-col items-center justify-center text-center px-4 py-32 animate-fade-in">
-        <h1 className="text-7xl font-extrabold tracking-tight mb-6 text-brand-red">
-          Run the Streets, <br /> Own Your Style.
+      <div className="text-center space-y-6 max-w-2xl mx-auto">
+        <h1 className="text-7xl font-bold tracking-tight">
+          <span className="text-brand-white">STN</span>
+          <span className="text-brand-red">STREET</span>
         </h1>
-        <p className="text-2xl text-brand-white/80 mb-10 animate-fade-in-delay">
-          The most exclusive streetwear. Once it drops, it's gone.
-        </p>
-        <div className="flex space-x-6">
-          <a href="#signup" className="px-8 py-4 bg-brand-red text-brand-black font-bold rounded-lg hover:bg-brand-white transition-all duration-300">
-            Sign Up for Updates
-          </a>
-          <a href="#about" className="px-8 py-4 border border-brand-white font-bold rounded-lg hover:bg-brand-white hover:text-brand-black transition-all duration-300">
-            Learn More
-          </a>
+        
+        <h2 className="text-4xl font-bold">
+          Run the Streets, <span className="text-brand-red">Own Your Style.</span>
+        </h2>
+        
+        <div className="text-2xl font-medium text-brand-white/80">
+          2025 LTD AUSTRALIA DAY DROP
         </div>
-      </section>
-
-      <section className="py-16 text-center bg-brand-red">
-        <h2 className="text-5xl font-bold mb-8 text-brand-black">Next Drop In:</h2>
-        <div className="text-brand-white text-7xl font-mono tracking-wider animate-pulse">
+        
+        <div className="text-5xl font-mono tracking-wider text-brand-red">
           {formatTime(timeLeft)}
         </div>
-      </section>
+        
+        <p className="text-xl text-brand-white/60">
+          Only the Bold Snag the Gold – Don't Let It Slip!
+        </p>
 
-      <section id="signup" className="py-16 px-4 text-center">
-        <h2 className="text-4xl font-bold mb-6">Stay in the Loop</h2>
-        <p className="text-brand-white/80 mb-8">Sign up to get notified for the next exclusive drop.</p>
-        <form className="flex justify-center" onSubmit={handleSubmit}>
-          <input
-            type="email"
-            placeholder="Enter your email"
-            className="px-6 py-3 rounded-l-lg bg-brand-white/10 text-brand-white border border-brand-white/20 focus:outline-none focus:ring-2 focus:ring-brand-red"
-          />
-          <button
-            type="submit"
-            className="px-8 py-3 bg-brand-red text-brand-black font-bold rounded-r-lg hover:bg-brand-white transition-all duration-300"
-          >
-            Notify Me
-          </button>
-        </form>
-      </section>
-
-      <footer className="py-8 text-center text-sm text-brand-white/60 border-t border-brand-white/20">
-        <p>&copy; {new Date().getFullYear()} Stolen Street. All Rights Reserved.</p>
-      </footer>
+        <div className="space-y-6">
+          <SubscribeButton earlyAccess={earlyAccess} />
+          
+          <div className="flex items-center justify-center space-x-2">
+            <input
+              type="checkbox"
+              id="earlyAccess"
+              checked={earlyAccess}
+              onChange={(e) => setEarlyAccess(e.target.checked)}
+              className="w-4 h-4 accent-brand-red"
+            />
+            <label htmlFor="earlyAccess" className="text-sm text-brand-white/80">
+              Opt in for early access and exclusive design leaks
+            </label>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
