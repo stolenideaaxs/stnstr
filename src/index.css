@@ -57,3 +57,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+body.time-warp {
+  overflow: hidden;
+  animation: time-warp 2s forwards;
+  background: radial-gradient(circle, #000, #111, #222);
+}

@@ -83,6 +83,11 @@ export default {
           '50%': { transform: 'scale(1.1)' },
           '100%': { backgroundColor: '#000000', transform: 'scale(1)' },
         },
+        'time-warp': {
+          '0%': { transform: 'scale(1)', filter: 'blur(0)' },
+          '50%': { transform: 'scale(1.5)', filter: 'blur(4px)' },
+          '100%': { transform: 'scale(1)', filter: 'blur(0)' },
+        },
       },
     },
   },

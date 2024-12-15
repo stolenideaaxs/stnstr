@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import SubscribeButton from '../components/SubscribeButton';
 
 const Index = () => {
   const [timeLeft, setTimeLeft] = useState(0);
@@ -61,6 +62,10 @@ const Index = () => {
         <p className="text-xl text-brand-white/60">
           Once it drops, it's gone. Don't sleep on this.
         </p>
+
+        <div className="mt-8">
+          <SubscribeButton />
+        </div>
       </div>
     </div>
   );
