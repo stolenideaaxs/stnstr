@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import SubscribeButton from '../components/SubscribeButton';
-import DesignSnippets from '../components/DesignSnippets';
 
 const Index = () => {
   const [timeLeft, setTimeLeft] = useState(0);
@@ -79,10 +78,6 @@ const Index = () => {
 
         <div className="mt-8">
           <SubscribeButton />
-        </div>
-
-        <div className="mt-8">
-          <DesignSnippets />
         </div>
       </div>
     </div>

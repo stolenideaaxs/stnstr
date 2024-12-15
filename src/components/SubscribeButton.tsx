@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 const SubscribeButton = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
+  const [isSubscribed, setIsSubscribed] = useState(false);
 
   const handleSubscribe = () => {
     if (!email || !email.includes('@')) {
@@ -15,6 +16,7 @@ const SubscribeButton = () => {
       return;
     }
     
+    setIsSubscribed(true);
     document.body.classList.add('time-warp');
     setTimeout(() => {
       navigate('/notify');
@@ -43,7 +45,7 @@ const SubscribeButton = () => {
         </button>
       </div>
       
-      <DesignSnippets />
+      {isSubscribed && <DesignSnippets />}
     </div>
   );
 };
