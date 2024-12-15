@@ -72,19 +72,9 @@ export default {
           '75%': { transform: 'scale(1.05)' },
           '100%': { transform: 'scale(1)' },
         },
-        'fade-in': {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        'fade-in-delay': {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
-          '50%': { opacity: '0' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        'gradient': {
-          '0%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
-          '100%': { backgroundPosition: '0% 50%' },
+        'radial-blur': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
         },
         'flash': {
           '0%': { backgroundColor: '#ea384c' },
