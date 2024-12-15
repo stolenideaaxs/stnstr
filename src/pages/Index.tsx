@@ -17,8 +17,8 @@ const Index = () => {
       const newTimeLeft = calculateTimeLeft();
       setTimeLeft(newTimeLeft);
       
-      // Flash effect every minute
-      if (newTimeLeft > 0 && newTimeLeft % 60 === 0) {
+      // Flash effect every 2 minutes (120 seconds)
+      if (newTimeLeft > 0 && newTimeLeft % 120 === 0) {
         setFlash(true);
         setTimeout(() => setFlash(false), 500);
       }
