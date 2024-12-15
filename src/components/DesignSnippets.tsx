@@ -11,10 +11,26 @@ const DesignSnippets = () => {
       </CollapsibleTrigger>
       <CollapsibleContent className="mt-2 space-y-2">
         <div className="grid grid-cols-2 gap-4 p-4 bg-black/50 rounded-lg backdrop-blur-sm">
-          <div className="bg-[#F2FCE2] h-24 rounded-lg animate-pulse"></div>
-          <div className="bg-[#FEF7CD] h-24 rounded-lg animate-pulse"></div>
-          <div className="bg-[#FEC6A1] h-24 rounded-lg animate-pulse"></div>
-          <div className="bg-[#E5DEFF] h-24 rounded-lg animate-pulse"></div>
+          <img 
+            src="/lovable-uploads/ff110188-aef9-4a58-bc1b-d70ec6eb0928.png" 
+            alt="Design preview 1"
+            className="w-full h-32 object-cover rounded-lg hover:scale-105 transition-transform"
+          />
+          <img 
+            src="/lovable-uploads/b788e620-6521-4f63-9a60-842861aab1fd.png" 
+            alt="Design preview 2"
+            className="w-full h-32 object-cover rounded-lg hover:scale-105 transition-transform"
+          />
+          <img 
+            src="/lovable-uploads/064d2cf9-29e9-4d5d-9a60-1162ef553193.png" 
+            alt="Design preview 3"
+            className="w-full h-32 object-cover rounded-lg hover:scale-105 transition-transform"
+          />
+          <img 
+            src="/lovable-uploads/6e428849-f3ab-4d42-b3d1-a057fb893206.png" 
+            alt="Design preview 4"
+            className="w-full h-32 object-cover rounded-lg hover:scale-105 transition-transform"
+          />
         </div>
       </CollapsibleContent>
     </Collapsible>
