@@ -50,7 +50,7 @@ const Index = () => {
 
       {/* Ambient glow effect */}
       <div 
-        className="absolute inset-0 bg-gradient-radial from-brand-red/20 via-transparent to-transparent animate-[radial-blur_10s_linear_infinite]"
+        className="absolute inset-0 bg-gradient-radial from-brand-red/40 via-transparent to-transparent animate-[radial-blur_10s_linear_infinite]"
         style={{
           transform: 'rotate(0deg)',
           mixBlendMode: 'overlay',
