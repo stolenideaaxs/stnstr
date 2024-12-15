@@ -3,7 +3,6 @@ import SubscribeButton from '../components/SubscribeButton';
 
 const Index = () => {
   const [timeLeft, setTimeLeft] = useState(0);
-  const [flash, setFlash] = useState(false);
 
   useEffect(() => {
     const calculateTimeLeft = () => {
@@ -30,13 +29,8 @@ const Index = () => {
   };
 
   return (
-    <div className={`min-h-screen flex items-center justify-center bg-black animate-pulse`}>
-      {/* Glowing void effect */}
-      <div className="absolute inset-0 bg-black">
-        <div className="absolute inset-0 bg-gradient-radial from-brand-red/20 via-transparent to-transparent animate-pulse mix-blend-overlay"></div>
-      </div>
-      
-      <div className="text-center relative z-10 space-y-8">
+    <div className="min-h-screen flex items-center justify-center bg-black">
+      <div className="text-center relative z-10 space-y-8 animate-[scale-in_2s_ease-in-out_infinite]">
         <h1 className="text-6xl font-bold mb-4">
           <span className="text-brand-white">STN</span>
           <span className="text-brand-red">STREET</span>
@@ -48,7 +42,7 @@ const Index = () => {
 
         <div className="mt-8">
           <h2 className="text-xl text-brand-white mb-2">AUSTRALIA DAY DROP</h2>
-          <div className="text-4xl font-mono text-brand-red animate-pulse">
+          <div className="text-4xl font-mono text-brand-red">
             {formatTime(timeLeft)}
           </div>
         </div>

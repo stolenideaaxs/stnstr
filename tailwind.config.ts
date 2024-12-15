@@ -54,11 +54,19 @@ export default {
       },
       animation: {
         'pulse': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'scale-in': 'scale-in 2s ease-in-out infinite',
       },
       keyframes: {
         'pulse': {
           '0%, 100%': { opacity: '1' },
           '50%': { opacity: '0.5' },
+        },
+        'scale-in': {
+          '0%': { transform: 'scale(1)' },
+          '25%': { transform: 'scale(1.05)' },
+          '50%': { transform: 'scale(1)' },
+          '75%': { transform: 'scale(1.05)' },
+          '100%': { transform: 'scale(1)' },
         },
         'fade-in': {
           '0%': { opacity: '0', transform: 'translateY(20px)' },
