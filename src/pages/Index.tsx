@@ -52,14 +52,14 @@ const Index = () => {
         </p>
 
         <div className="mt-8">
-          <h2 className="text-xl text-brand-white mb-2">AUSTRALIA DAY DROP</h2>
+          <h2 className="text-xl text-brand-white mb-2">2025 LTD AUSTRALIA DAY DROP</h2>
           <div className="text-4xl font-mono text-brand-red">
             {formatTime(timeLeft)}
           </div>
         </div>
 
         <p className="text-xl text-brand-white/60">
-          Only the Bold Snag the Gold – Don't Let It Slip!
+          Only the Bold Steal the Gold – Don't Let It Slip!
         </p>
 
         <div className="mt-8">
