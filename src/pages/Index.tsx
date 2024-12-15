@@ -41,7 +41,7 @@ const Index = () => {
         {[...Array(16)].map((_, i) => (
           <img
             key={i}
-            src="/lovable-uploads/2701f4be-4a11-4072-8110-7aed39da72ea.png"
+            src="/lovable-uploads/3bea4f6c-4da9-4d52-a7bb-d13492cd4fbf.png"
             alt=""
             className="w-full h-auto object-contain"
           />
