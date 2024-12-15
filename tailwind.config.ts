@@ -49,12 +49,17 @@ export default {
         'brand-black': '#000000',
         'brand-white': '#FFFFFF',
       },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      },
       animation: {
-        'fade-in': 'fade-in 1.5s ease-out',
-        'fade-in-delay': 'fade-in-delay 2s ease-out',
-        'gradient': 'gradient 4s ease infinite',
+        'pulse': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       keyframes: {
+        'pulse': {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.5' },
+        },
         'fade-in': {
           '0%': { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
