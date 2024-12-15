@@ -36,8 +36,16 @@ const Index = () => {
         ${flash ? 'animate-[flash_500ms]' : ''} 
         ${whiteFlash ? 'animate-[whiteFlash_1s]' : ''}`}>
       
+      {/* Ambient glow effect */}
+      <div 
+        className="absolute inset-0 bg-gradient-radial from-brand-red/40 via-transparent to-transparent animate-[radial-blur_10s_linear_infinite] z-0"
+        style={{
+          transform: 'rotate(0deg)',
+        }} 
+      />
+
       {/* Background pattern layer */}
-      <div className="absolute inset-0 grid grid-cols-4 gap-4 animate-[scale-in_60s_ease-in-out_infinite] z-0">
+      <div className="absolute inset-0 grid grid-cols-4 gap-4 animate-[scale-in_60s_ease-in-out_infinite] z-10">
         {[...Array(16)].map((_, i) => (
           <img
             key={i}
@@ -48,15 +56,7 @@ const Index = () => {
         ))}
       </div>
 
-      {/* Ambient glow effect */}
-      <div 
-        className="absolute inset-0 bg-gradient-radial from-brand-red/40 via-transparent to-transparent animate-[radial-blur_10s_linear_infinite]"
-        style={{
-          transform: 'rotate(0deg)',
-        }} 
-      />
-
-      <div className="text-center relative z-10 space-y-8">
+      <div className="text-center relative z-20 space-y-8">
         <h1 className="text-6xl font-bold mb-4">
           <span className="text-brand-white">STN</span>
           <span className="text-brand-red">STREET</span>
