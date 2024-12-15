@@ -37,7 +37,7 @@ const Index = () => {
         ${whiteFlash ? 'animate-[whiteFlash_1s]' : ''}`}>
       
       {/* Background pattern layer */}
-      <div className="absolute inset-0 grid grid-cols-4 gap-4 opacity-30 animate-[scale-in_60s_ease-in-out_infinite]">
+      <div className="absolute inset-0 grid grid-cols-4 gap-4 opacity-65 animate-[scale-in_60s_ease-in-out_infinite]">
         {[...Array(16)].map((_, i) => (
           <img
             key={i}
