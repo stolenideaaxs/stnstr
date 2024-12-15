@@ -16,12 +16,6 @@ const Index = () => {
     const timer = setInterval(() => {
       const newTimeLeft = calculateTimeLeft();
       setTimeLeft(newTimeLeft);
-      
-      // Flash effect every 2 minutes (120 seconds)
-      if (newTimeLeft > 0 && newTimeLeft % 120 === 0) {
-        setFlash(true);
-        setTimeout(() => setFlash(false), 500);
-      }
     }, 1000);
 
     return () => clearInterval(timer);
@@ -36,7 +30,7 @@ const Index = () => {
   };
 
   return (
-    <div className={`min-h-screen flex items-center justify-center bg-black ${flash ? 'animate-[whiteFlash_1s]' : 'animate-pulse'}`}>
+    <div className={`min-h-screen flex items-center justify-center bg-black animate-pulse`}>
       {/* Glowing void effect */}
       <div className="absolute inset-0 bg-black">
         <div className="absolute inset-0 bg-gradient-radial from-brand-red/20 via-transparent to-transparent animate-pulse mix-blend-overlay"></div>
