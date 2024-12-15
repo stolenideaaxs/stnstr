@@ -41,6 +41,7 @@ const AdminLogin = () => {
         <h1 className="text-2xl font-bold text-center mb-8">Admin Login</h1>
         <Auth
           supabaseClient={supabase}
+          view="sign_in"
           appearance={{
             theme: ThemeSupa,
             variables: {
@@ -54,13 +55,6 @@ const AdminLogin = () => {
           }}
           providers={[]}
           redirectTo={`${window.location.origin}/dashboard`}
-          onError={(error) => {
-            toast({
-              title: "Error",
-              description: error.message,
-              variant: "destructive",
-            });
-          }}
         />
       </div>
     </div>
