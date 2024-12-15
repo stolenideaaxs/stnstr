@@ -11,7 +11,6 @@ export default {
   prefix: "",
   theme: {
     extend: {
-      // ... keep existing code
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
