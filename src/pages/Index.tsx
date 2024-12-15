@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import SubscribeButton from '../components/SubscribeButton';
+import { Checkbox } from "@/components/ui/checkbox";
 
 const Index = () => {
   const [timeLeft, setTimeLeft] = useState(0);
   const [flash, setFlash] = useState(false);
   const [whiteFlash, setWhiteFlash] = useState(false);
+  const [earlyAccess, setEarlyAccess] = useState(false);
 
   useEffect(() => {
     const calculateTimeLeft = () => {
@@ -77,7 +79,22 @@ const Index = () => {
         </p>
 
         <div className="mt-8">
-          <SubscribeButton />
+          <SubscribeButton earlyAccess={earlyAccess} />
+        </div>
+
+        <div className="flex items-center space-x-2 justify-center mt-4">
+          <Checkbox 
+            id="early-access" 
+            checked={earlyAccess}
+            onCheckedChange={(checked) => setEarlyAccess(checked as boolean)}
+            className="border-brand-red data-[state=checked]:bg-brand-red"
+          />
+          <label
+            htmlFor="early-access"
+            className="text-sm font-medium leading-none text-brand-white cursor-pointer"
+          >
+            Opt in for early access and exclusive design leaks
+          </label>
         </div>
       </div>
     </div>

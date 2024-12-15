@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Bell } from 'lucide-react';
 import { Input } from '@/components/ui/input';
-import DesignSnippets from './DesignSnippets';
 import { toast } from 'sonner';
 
-const SubscribeButton = () => {
+interface SubscribeButtonProps {
+  earlyAccess: boolean;
+}
+
+const SubscribeButton = ({ earlyAccess }: SubscribeButtonProps) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
-  const [isSubscribed, setIsSubscribed] = useState(false);
 
   const handleSubscribe = () => {
     if (!email || !email.includes('@')) {
@@ -16,10 +18,9 @@ const SubscribeButton = () => {
       return;
     }
     
-    setIsSubscribed(true);
     document.body.classList.add('time-warp');
     setTimeout(() => {
-      navigate('/notify');
+      navigate('/notify', { state: { email, earlyAccess } });
       document.body.classList.remove('time-warp');
     }, 2000);
   };
@@ -44,8 +45,6 @@ const SubscribeButton = () => {
           <span>Notify Me</span>
         </button>
       </div>
-      
-      {isSubscribed && <DesignSnippets />}
     </div>
   );
 };
