@@ -59,7 +59,7 @@ const Index = () => {
         </div>
 
         <p className="text-xl text-brand-white/60">
-          Once it drops, it's gone. Don't sleep on this.
+          Only the Bold Snag the Gold – Don't Let It Slip!
         </p>
 
         <div className="mt-8">
