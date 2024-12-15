@@ -11,6 +11,7 @@ export default {
   prefix: "",
   theme: {
     extend: {
+      // ... keep existing code
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -74,11 +75,11 @@ export default {
           '50%': { backgroundPosition: '100% 50%' },
           '100%': { backgroundPosition: '0% 50%' },
         },
-        flash: {
+        'flash': {
           '0%': { backgroundColor: '#ea384c' },
           '100%': { backgroundColor: '#000000' },
         },
-        whiteFlash: {
+        'whiteFlash': {
           '0%': { backgroundColor: '#FFFFFF', transform: 'scale(1)' },
           '50%': { transform: 'scale(1.1)' },
           '100%': { backgroundColor: '#000000', transform: 'scale(1)' },
