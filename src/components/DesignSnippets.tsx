@@ -14,22 +14,22 @@ const DesignSnippets = () => {
           <img 
             src="/lovable-uploads/ff110188-aef9-4a58-bc1b-d70ec6eb0928.png" 
             alt="Design preview 1"
-            className="w-full h-32 object-cover rounded-lg hover:scale-105 transition-transform"
+            className="w-full h-32 object-cover rounded-lg hover:scale-105 transition-transform opacity-80 drop-shadow-[0_0_10px_rgba(234,56,76,0.7)]"
           />
           <img 
             src="/lovable-uploads/b788e620-6521-4f63-9a60-842861aab1fd.png" 
             alt="Design preview 2"
-            className="w-full h-32 object-cover rounded-lg hover:scale-105 transition-transform"
+            className="w-full h-32 object-cover rounded-lg hover:scale-105 transition-transform opacity-80 drop-shadow-[0_0_10px_rgba(234,56,76,0.7)]"
           />
           <img 
             src="/lovable-uploads/064d2cf9-29e9-4d5d-9a60-1162ef553193.png" 
             alt="Design preview 3"
-            className="w-full h-32 object-cover rounded-lg hover:scale-105 transition-transform"
+            className="w-full h-32 object-cover rounded-lg hover:scale-105 transition-transform opacity-80 drop-shadow-[0_0_10px_rgba(234,56,76,0.7)]"
           />
           <img 
             src="/lovable-uploads/6e428849-f3ab-4d42-b3d1-a057fb893206.png" 
             alt="Design preview 4"
-            className="w-full h-32 object-cover rounded-lg hover:scale-105 transition-transform"
+            className="w-full h-32 object-cover rounded-lg hover:scale-105 transition-transform opacity-80 drop-shadow-[0_0_10px_rgba(234,56,76,0.7)]"
           />
         </div>
       </CollapsibleContent>
